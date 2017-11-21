@@ -42,13 +42,16 @@ PointCloudXYZRGB::Ptr model_icp_align (new PointCloudXYZRGB);
 
 void  cloud_cb (const sensor_msgs::PointCloud2ConstPtr& input)
 {	
-	
- 	pcl::fromROSMsg (*input, *model_t1);
- 	if (model_t0->points.size() == model_t1->points.size()){
-		icp_pose_estimation (model_t0, model_t1);
-		pose_publish (model_icp_align,model_t0, model_t1);
+	//Step 1: Convert pointcloud type from Ros pointcloud2  (input) to PCL pointCLoudXYZRGB (model_t1)
+
+	//Step 2: Use function icp_pose_estimation() to register consequently moving object (model_t0, model_t1) 
+	//Step 3: Use function pose_publish() to publish moving object and aligned object pointcloud
+	if (model_t0->points.size() == model_t1->points.size()){
+
+
  	}
- 	copyPointCloud(*model_t1,*model_t0);
+	//Step 4: Update the current point (model_t0)
+
 }   
 
 void  pose_publish (PointCloudXYZRGB::Ptr cloud_icp_align,PointCloudXYZRGB::Ptr cloud_t0, PointCloudXYZRGB::Ptr cloud_t1){
