@@ -104,16 +104,7 @@ void icp_pose_estimation (PointCloudXYZRGB::Ptr cloud_t0, PointCloudXYZRGB::Ptr 
 	pcl::search::KdTree<pcl::PointXYZRGB>::Ptr tree1 (new pcl::search::KdTree<pcl::PointXYZRGB>);
 	pcl::search::KdTree<pcl::PointXYZRGB>::Ptr tree2 (new pcl::search::KdTree<pcl::PointXYZRGB>);
 	///////////Exercise : Use pcl icp function to get transform matrix///////////////////
-	tree1->setInputCloud(cloud_t0);	
-	tree2->setInputCloud(cloud_t1);	
-	icp.setSearchMethodSource(tree1);
-	icp.setSearchMethodTarget(tree2);
-	icp.setInputSource(cloud_t0);
-	icp.setInputTarget(cloud_t1);
-	icp.setMaxCorrespondenceDistance(1500);
-	icp.setTransformationEpsilon(1e-10);
-	icp.setEuclideanFitnessEpsilon(0.1);
-	icp.setMaximumIterations(1000);
+
 	
 	////////////////////////////////////////////////////////////////////////////////////
 	icp.align(*model_icp_align);
