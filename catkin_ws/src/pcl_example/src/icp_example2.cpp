@@ -108,15 +108,15 @@ void icp_pose_estimation (PointCloudXYZRGB::Ptr cloud_t0, PointCloudXYZRGB::Ptr 
 	pcl::search::KdTree<pcl::PointXYZRGB>::Ptr tree2 (new pcl::search::KdTree<pcl::PointXYZRGB>);
 	///////////Exercise : Use pcl icp function to get transform matrix///////////////////
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+  
+  
+  
+  
+  
+  
+  
+  
 	
 	////////////////////////////////////////////////////////////////////////////////////
 	icp.align(*model_icp_align);
