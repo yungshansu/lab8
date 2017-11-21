@@ -88,7 +88,7 @@ void  pose_publish (PointCloudXYZRGB::Ptr cloud_icp_align,PointCloudXYZRGB::Ptr 
 	double y_error= fabs((average_cloud_t1_y-average_cloud_icp_align_y)/average_cloud_t1_y);
 	double z_error= fabs((average_cloud_t1_z-average_cloud_icp_align_z)/average_cloud_t1_z);
 	printf("x_error: %3lf percent, y_error: %3lf percent, z_error: %3lf percent\n",x_error*100,y_error*100,z_error*100);
-	///////////////////////////////////
+	printf("---------------------------------------------------------------------------------\n");
 
 
 	cloud_t0->header.frame_id = "/camera_link";
@@ -108,16 +108,16 @@ void icp_pose_estimation (PointCloudXYZRGB::Ptr cloud_t0, PointCloudXYZRGB::Ptr 
 	pcl::search::KdTree<pcl::PointXYZRGB>::Ptr tree1 (new pcl::search::KdTree<pcl::PointXYZRGB>);
 	pcl::search::KdTree<pcl::PointXYZRGB>::Ptr tree2 (new pcl::search::KdTree<pcl::PointXYZRGB>);
 	///////////Exercise : Use pcl icp function to get transform matrix///////////////////
-
-
-  
-  
-  
-  
-  
-  
-  
-  
+	tree1->setInputCloud(cloud_t0);	
+	tree2->setInputCloud(cloud_t1);	
+	icp.setSearchMethodSource(tree1);
+	icp.setSearchMethodTarget(tree2);
+	icp.setInputSource(cloud_t0);
+	icp.setInputTarget(cloud_t1);
+	icp.setMaxCorrespondenceDistance(1500);
+	icp.setTransformationEpsilon(1e-10);
+	icp.setEuclideanFitnessEpsilon(0.1);
+	icp.setMaximumIterations(1000); 
 	
 	////////////////////////////////////////////////////////////////////////////////////
 	icp.align(*model_icp_align);
